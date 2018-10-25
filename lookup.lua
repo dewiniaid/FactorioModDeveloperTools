@@ -49,7 +49,9 @@ local lookup = {
         "is_blueprint", "is_blueprint_book", "is_module", "is_tool", "is_mining_tool", "is_armor", "is_repair_tool",
         "is_item_with_label", "is_item_with_inventory", "is_item_with_entity_data", "is_selection_tool",
         "is_item_with_tags", "is_deconstruction_item"
-    }
+    },
+    item_prototype_attribute_values = { "stackable", "can_be_mod_opened" },
+    item_prototype_flags = { "goes-to-main-inventory", "goes-to-quickbar", "hidden" }
 }
 
 return lookup

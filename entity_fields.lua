@@ -1,4 +1,4 @@
-local Field = require('Field')
+local Field = require('field')
 local lookup = require('lookup')
 
 
@@ -31,7 +31,7 @@ local entity_fields = {
     Field:new{name="associated_player", value=function(entity)
         return (
             entity.type == 'character'
-            and ((entity.type.associated_player and entity.type.associated_player.name) or '**none**')
+            and ((entity.type.associated_player and entity.type.associated_player.name) or '-none-')
             or nil
         ) end
     },
@@ -53,10 +53,10 @@ local entity_fields = {
                 if entity.has_flag(k) then table.insert(flags, k) end
             end
             flags = table.concat(flags, ", ")
-            if #flags then
+            if #flags > 0 then
                 return flags
             else
-                return "**none**"
+                return "-none-"
             end
         end
     },
@@ -77,10 +77,10 @@ local entity_fields = {
                 if ok and result then table.insert(attrs, k) end
             end
             attrs = table.concat(attrs, ", ")
-            if #attrs then
+            if #attrs > 0 then
                 return attrs
             else
-                return "**none**"
+                return "-none-"
             end
         end
     },
@@ -89,7 +89,7 @@ local entity_fields = {
         name="recipe", requires_type={"assembling-machine", "furnace"},
         value=function(entity)
             local recipe = entity.get_recipe()
-            return recipe and recipe.name or "**none**"
+            return recipe and recipe.name or "-none-"
         end
     },
 
