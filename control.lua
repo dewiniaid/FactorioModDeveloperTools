@@ -129,6 +129,6 @@ end)
 -- When players join the game, restore their previous watching state.
 script.on_event(defines.events.on_player_joined_game, function(event)
     local index = event.player_index
-    toggle_debug(game.players[index], offline_entity_watchers[index] ~= false)
+    toggle_debug(game.players[index], global.offline_entity_watchers[index] ~= false)
     global.offline_entity_watchers[index] = nil
 end)
