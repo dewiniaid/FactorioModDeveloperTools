@@ -1,9 +1,24 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.1.2
+Date: 26. 10. 2018
+  Bugfixes:
+     - Fix a possible desync issue.
+     - Fix issue causing debugging to need to be toggled twice to be functional when loading a game.
+
+  Changes:
+     - Added a "magic map seed" option.  If a new game is started and has this seed, all worldgen will be replaced with
+       a pattern of lab tiles.  The default map seed for this feature is 701; it can be disabled by setting it to 0.
+     - Add unit_number
+     - Added information on connected rails.
+
+---------------------------------------------------------------------------------------------------
 Version: 0.1.1
 Date: 25. 10. 2018
   Changes:
-    - Fix issues that only happen with zipped versions of mods but are totally my bad anyways.
     - Add more item fields.
+
+  Bugfixes:
+    - Fix issues that only happen with zipped versions of mods but are totally my bad anyways.
 
 ---------------------------------------------------------------------------------------------------
 Version: 0.1.0

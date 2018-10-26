@@ -95,6 +95,38 @@ local function toggle_debug(player, toggle)
 end
 
 
+local function enable_magic_map_gen()
+    local tiles
+
+    script.on_event(defines.events.on_chunk_generated, function(event)
+        local ix = 1
+        if not tiles then
+            tiles = {}
+            local tile_names = {"lab-dark-1", "lab-dark-2" }
+
+            for x = event.area.left_top.x, event.area.right_bottom.x do
+                for y = event.area.left_top.y, event.area.right_bottom.y do
+                    tiles[ix] = {
+                        name = tile_names[1 + ((x+y)%2)],
+                        position = {x=x, y=y}
+                    }
+                    ix = ix + 1
+                end
+            end
+        else
+            for x = event.area.left_top.x, event.area.right_bottom.x do
+                for y = event.area.left_top.y, event.area.right_bottom.y do
+                    tiles[ix].position.x = x
+                    tiles[ix].position.y = y
+                    ix = ix + 1
+                end
+            end
+        end
+        event.surface.set_tiles(tiles, true)
+    end)
+end
+
+
 -- Catch our keybinding
 script.on_event("ModDeveloperTools-toggle", function(event)
     toggle_debug(game.players[event.player_index])
@@ -109,6 +141,24 @@ script.on_init(function()
     global.offline_entity_watchers = {}
     for _,player in pairs(game.players) do
         toggle_debug(player, true)  -- Default windows to visible, since this is a debugging mod.
+    end
+    log("Hello, world!  I was added to this save on game.tick=" .. game.tick)
+    if game.tick == 0 then  -- Whee, a brand new save!
+        local seed = game.surfaces[1].map_gen_settings.seed
+        local target_seed = settings.global["ModDeveloperTools_magic-map-seed"].value
+        log("Current map seed: " .. seed)
+        if not target_seed or target_seed == 0 then
+            log("Magic map seed is 0.  Disabling magic tile functionality.")
+        else
+            log("Magic map seed: " .. target_seed)
+            if target_seed == seed then
+                log("Enabling magic map gen overrides.")
+                global.magic_map_gen = true
+                enable_magic_map_gen()
+            else
+                log("Seeds did not match.  Leaving worldgen alone.")
+            end
+        end
     end
 end)
 
@@ -132,3 +182,13 @@ script.on_event(defines.events.on_player_joined_game, function(event)
     toggle_debug(game.players[index], global.offline_entity_watchers[index] ~= false)
     global.offline_entity_watchers[index] = nil
 end)
+
+script.on_load(function()
+    if not table.is_empty(global.entity_watchers) then
+        enable_events()
+    end
+    if global.magic_map_gen then
+        enable_magic_map_gen()
+    end
+end)
+

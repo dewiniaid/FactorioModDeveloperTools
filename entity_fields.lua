@@ -93,7 +93,35 @@ local entity_fields = {
         end
     },
 
+    Field:new{
+        name="connected_rail", requires_type={"straight-rail", "curved-rail"},
+        value=function(entity)
+            local output = {}
+            local neighbor
+            for first_letter, rail_direction in pairs({
+                F = defines.rail_direction.front,
+                B = defines.rail_direction.back
+            }) do
+                output_line = {}
+                for second_letter, rail_connection_direction in pairs({
+                    L = defines.rail_connection_direction.left,
+                    S = defines.rail_connection_direction.straight,
+                    R = defines.rail_connection_direction.right
+                }) do
+                    neighbor = entity.get_connected_rail{rail_direction=rail_direction, rail_connection_direction=rail_connection_direction }
+                    if neighbor then
+                        table.insert(output, first_letter .. second_letter .. "=" .. neighbor.unit_number)
+                    end
+                end
+            end
+            if #output then
+                return table.concat(output, ", ")
+            end
+        end
+    },
+
     Field:new{name="force", value=function(entity) if entity.force then return entity.force.name end end},
+    Field:new{name="unit_number"},
     Field:new{name="amount", requires_type="resource"},
     Field:new{name="initial_amount", requires_type="resource"},
     Field:new{name="signal_state", requires_type="rail-signal", lookup=lookup.signal_state},
