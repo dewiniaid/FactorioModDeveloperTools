@@ -69,10 +69,10 @@ end
 
 function InfoFrame:update_frame(frame, object)
     if not object then
-        frame.style.visible = false
+        frame.visible = false
         return
     end
-    frame.style.visible = true
+    frame.visible = true
     frame.Title.caption = self.get_title(object)
     local subflow = frame.Subflow
     for _, field in pairs(self.fields) do

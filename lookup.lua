@@ -51,7 +51,7 @@ local lookup = {
         "is_item_with_tags", "is_deconstruction_item"
     },
     item_prototype_attribute_values = { "stackable", "can_be_mod_opened" },
-    item_prototype_flags = { "goes-to-main-inventory", "goes-to-quickbar", "hidden" }
+    item_prototype_flags = { "hidden" }
 }
 
 return lookup

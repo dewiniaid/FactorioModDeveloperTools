@@ -1,6 +1,12 @@
 local Field = require('field')
 local lookup = require('lookup')
 
+local function protoname(k)
+    function fn(entity)
+        return entity.prototype[k] and entity.prototype[k].name or nil
+    end
+    return fn
+end
 
 local entity_fields = {
     Field:new("name"),
@@ -25,6 +31,10 @@ local entity_fields = {
         end
     },
     Field:new{name="cliff_orientation", requires_type="cliff"},
+    Field:new{name="group", value=protoname('group')},
+    Field:new{name="subgroup", value=protoname('subgroup')},
+    Field:new{name="order", use_prototype=true},
+    Field:new{name="fast_replaceable_group", use_prototype=true},
     Field:new("position"),
     Field:new("drop_position"),
     Field:new{name="pickup_position", requires_type="inserter"},
@@ -76,9 +86,28 @@ local entity_fields = {
                 local ok, result = pcall(function() return entity[k]() end)
                 if ok and result then table.insert(attrs, k) end
             end
-            attrs = table.concat(attrs, ", ")
             if #attrs > 0 then
-                return attrs
+                return table.concat(attrs, ", ")
+            else
+                return "-none-"
+            end
+        end
+    },
+
+    Field:new {
+        name = "collision_mask", value = function(entity)
+            local m = entity.prototype.collision_mask
+            if not m then
+                return "-none-"
+            end
+            local attrs = {}
+            for k, v in pairs(m) do
+                if v then
+                    attrs[1 + #attrs] = k
+                end
+            end
+            if #attrs > 0 then
+                return table.concat(attrs, ", ")
             else
                 return "-none-"
             end

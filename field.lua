@@ -109,7 +109,7 @@ function Field:update_gui(parent, object)
 
     local flow = parent[self.gui_name]
     if not flow then
-        flow = self.create_gui(parent)
+        flow = self:create_gui(parent)
     end
     local ok, caption, style_override
     if self.requires_type and not self.requires_type[object.type] then
@@ -129,13 +129,13 @@ function Field:update_gui(parent, object)
     end
 
     if not ok then
-        flow.style.visible = true
+        flow.visible = true
         flow.FieldValue.style = self.error_style
         flow.FieldValue.caption = "**Error**"
     elseif caption == nil then
-        flow.style.visible = false
+        flow.visible = false
     else
-        flow.style.visible = true
+        flow.visible = true
         flow.FieldValue.style = style_override or self.value_style
         flow.FieldValue.caption = caption
     end
