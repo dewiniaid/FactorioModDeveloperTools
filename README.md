@@ -8,6 +8,12 @@ by default.
 The entity information panel shows information on your currently selected entity, and the item information panel
 shows information on your current cursor stack.
 
+### 0.1.4 (2019-02-27)
+ * Add new entity and item prototype flags.
+ * Fix a flag being renamed in 0.17.2 that caused all entity flags to report `**Error**`
+ * Add `belt_speed`
+ * List the technology required to unlock an item's recipes (or the item that builds an entity).
+  
 ### 0.1.3 (2019-02-26)
  * Update for Factorio 0.17
  * Add `group`, `subgroup`, `order`, `fast_replaceable_group` and `collision_mask` to entity info.

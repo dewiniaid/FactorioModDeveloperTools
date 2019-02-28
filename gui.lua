@@ -1,5 +1,5 @@
 require("mod-gui")
-
+techdata = require("techdata")
 
 local InfoFrame = {}
 InfoFrame.__meta = { __index = InfoFrame }
@@ -83,12 +83,13 @@ end
 
 local EntityFrame = InfoFrame:new_subclass{
     fields = require('entity_fields'),
-    get_title = function(object) return object.localised_name end,
+    --get_title = function(object) return object.localised_name end,
+    get_title = function(object) return {"", "[entity=" .. object.name .. "]", object.localised_name} end,
 }
 
 local ItemFrame = InfoFrame:new_subclass{
     fields = require('item_fields'),
-    get_title = function(object) return object.prototype.localised_name end,
+    get_title = function(object) return {"", "[item=" .. object.name .. "]", object.prototype.localised_name} end,
 }
 
 

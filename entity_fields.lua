@@ -1,5 +1,6 @@
 local Field = require('field')
 local lookup = require('lookup')
+local techdata = require('techdata')
 
 local function protoname(k)
     function fn(entity)
@@ -38,6 +39,12 @@ local entity_fields = {
     Field:new("position"),
     Field:new("drop_position"),
     Field:new{name="pickup_position", requires_type="inserter"},
+    Field:new{name="belt_speed", value=function(entity)
+        local s = entity.prototype.belt_speed
+        if s ~= nil then
+            return s .. "  (" .. (s*480) .. " Items/s)"
+        end
+    end},
     Field:new{name="associated_player", value=function(entity)
         return (
             entity.type == 'character'
@@ -155,6 +162,7 @@ local entity_fields = {
     Field:new{name="initial_amount", requires_type="resource"},
     Field:new{name="signal_state", requires_type="rail-signal", lookup=lookup.signal_state},
     Field:new{name="chain_signal_state", requires_type="rail-chain-signal", lookup=lookup.chain_signal_state},
+    Field:new{name="technology", label="Technology", value=function(entity) return techdata.entities[entity.name] end},
 }
 
 return entity_fields

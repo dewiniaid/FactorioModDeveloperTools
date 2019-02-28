@@ -1,5 +1,6 @@
 local Field = require('field')
 local lookup = require('lookup')
+local techdata = require('techdata')
 
 local function protoname(k)
     function fn(entity)
@@ -100,6 +101,7 @@ local item_fields = {
             end
         end
     },
+    Field:new{name="technology", label="Technology", value=function(item) return techdata.items[item.name] end},
 }
 
 return item_fields

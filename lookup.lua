@@ -34,11 +34,15 @@ local lookup = {
         "not-on-map",
         "not-deconstructable",
         "not-blueprintable",
-        "hide-from-bonus-gui",
+        "hidden",
         "hide-alt-info",
         "fast-replaceable-no-cross-type-while-moving",
         "no-gap-fill-while-building",
         "not-flammable",
+        "no-automated-item-removal",
+        "no-automated-item-insertion",
+        "no-copy-paste",
+        "not-selectable-in-game",
     },
     directions = invert_table(defines.direction),
     entity_attribute_functions = {"has_command", "is_crafting", "is_opened", "is_opening", "is_closed", "is_closing"},
@@ -48,10 +52,17 @@ local lookup = {
     item_attribute_values = {
         "is_blueprint", "is_blueprint_book", "is_module", "is_tool", "is_mining_tool", "is_armor", "is_repair_tool",
         "is_item_with_label", "is_item_with_inventory", "is_item_with_entity_data", "is_selection_tool",
-        "is_item_with_tags", "is_deconstruction_item"
+        "is_item_with_tags", "is_deconstruction_item",
     },
     item_prototype_attribute_values = { "stackable", "can_be_mod_opened" },
-    item_prototype_flags = { "hidden" }
+    item_prototype_flags = {
+        "hidden",
+        "only-in-cursor",
+        "not-stackable",
+        "can-extend-inventory",
+        "primary-place-result",
+        "mod-openable"
+    }
 }
 
 return lookup
