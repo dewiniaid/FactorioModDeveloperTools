@@ -63,7 +63,12 @@ end
 
 
 function InfoFrame:update(player, object)
-    return self:update_frame(self:get(player), object)
+    -- Probably not a proper fix but it'll do for now.
+    local f = self:get(player)
+    if f then
+        return self:update_frame(self:get(player), object)
+    end
+    return self:create(player, object)
 end
 
 

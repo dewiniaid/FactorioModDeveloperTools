@@ -1,4 +1,10 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.1.5
+Date: 31. 01. 2020
+  Bugfixes:
+    - Speculative fix for a case where GUI frames might not exist when they should, causing a crash.
+
+---------------------------------------------------------------------------------------------------
 Version: 0.1.4
 Date: 27. 02. 2019
   Changes:
@@ -46,37 +52,3 @@ Version: 0.1.0
 Date: 25. 10. 2018
   Changes:
     - First public release.
-
-
-
-
-
-why not
-
-```
-
-lua
-entities_for_direction = {
-   [defines.directions.north] == 'picker-pipe-marker-ns',
-   [defines.directions.east] == 'picker-pipe-marker-ew',
-   [defines.directions.west] == 'picker-pipe-marker-ew',
-   [defines.directions.south] == 'picker-pipe-marker-ns',
-}
-
--- ...
-
-args = { position = {} }
-
--- ...
-
-if entities_for_direction[current_direction] then
-    args.position[1] = center_x
-    args.position[2] = center_y
-    args.name = entities_for_direction[current_direction]
-    entity.surface.create_entity(args)
-end
-
-```
-
-
-   return entity.surface.create_entity
