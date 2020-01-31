@@ -12,6 +12,7 @@ shows information on your current cursor stack.
  * Add a speculative fix for a case where GUI frames might not exist when they should, causing a crash.
    - This may cause the GUI frame to display in the wrong order, which can be fixed by toggling them off and back on 
      again.
+ * Add a German translation, courtesy mrbesen and tiriscef.
 
 ### 0.1.4 (2019-02-27)
  * Add new entity and item prototype flags.
