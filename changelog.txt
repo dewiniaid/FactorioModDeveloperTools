@@ -1,6 +1,9 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.1.5
 Date: 31. 01. 2020
+  Translations:
+    - Added a German translation, courtesy of mrbesen and tiriscef.
+
   Bugfixes:
     - Speculative fix for a case where GUI frames might not exist when they should, causing a crash.
 
