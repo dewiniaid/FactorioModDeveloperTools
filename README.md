@@ -8,6 +8,9 @@ by default.
 The entity information panel shows information on your currently selected entity, and the item information panel
 shows information on your current cursor stack.
 
+### 0.2.0 (2020-01-31)
+  * **Update for Factorio 0.18**
+
 ### 0.1.5 (2020-01-31)
  * Add a speculative fix for a case where GUI frames might not exist when they should, causing a crash.
    - This may cause the GUI frame to display in the wrong order, which can be fixed by toggling them off and back on 
@@ -21,7 +24,7 @@ shows information on your current cursor stack.
  * List the technology required to unlock an item's recipes (or the item that builds an entity).
   
 ### 0.1.3 (2019-02-26)
- * Update for Factorio 0.17
+ * **Update for Factorio 0.17**
  * Add `group`, `subgroup`, `order`, `fast_replaceable_group` and `collision_mask` to entity info.
  * Minor bugfixes.
 

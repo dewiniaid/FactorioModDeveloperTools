@@ -1,11 +1,11 @@
 {
     "name": "ModDeveloperTools",
-    "version": "0.1.5",
+    "version": "0.2.0",
     "title": "Mod Developer Tools",
     "author": "Dewin",
     "contact": "https://github.com/dewiniaid/FactorioModDeveloperTools",
     "homepage": "https://github.com/dewiniaid/FactorioModDeveloperTools",
-    "factorio_version": "0.17",
-    "dependencies": ["base >= 0.17"],
+    "factorio_version": "0.18",
+    "dependencies": ["base >= 0.18"],
     "description": "Informational tools for mod developers and the inquisitive."
 }
